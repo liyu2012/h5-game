@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#c1,
+#c2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#c1 {
+    z-index: 1;
+}
+
+#c2 {
+    z-index: 0;
+}
+
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game {
+    position: relative;
+    width: 800px;
+    height: 800px;
+}
