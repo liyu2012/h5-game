@@ -1,15 +1,16 @@
-import { c1, c2, pen1, pen2, w, h, lastTime, deltaTime, ane } from './main'
+import { pen1, w, deltaTime, ane } from './main'
 export class Fruit {
     constructor() {
-        this.num = 30
+        this.num = 20
         this.alive = []
         this.fruit = new Image()
-
         this.x = []
         this.y = []
         this.l = []
+        this.id = []
         this.spd = []
         this.fruitType = []
+        this.init()
     }
     init() {
         for (let i = 0; i < this.num; i++) {
@@ -19,7 +20,8 @@ export class Fruit {
             this.l[i] = 0
             this.spd[i] = Math.random() * 0.017 + 0.002
             this.fruitType[i] = ''
-            this.born(ane, h, i)
+            this.id[i] = 0
+            this.born(i)
         }
 
     }
@@ -36,6 +38,8 @@ export class Fruit {
                 }
 
                 if (this.l[i] <= 14) {
+                    this.x[i] = ane.headx[this.id[i]]
+                    this.y[i] = ane.heady[this.id[i]]
                     this.l[i] += this.spd[i] * deltaTime
 
                 } else {
@@ -62,14 +66,17 @@ export class Fruit {
                 num++
         }
     }
+    dead(i) {
+        this.alive[i] = false;
+    }
     born(i) {
-        var aneId = Math.floor(Math.random() * ane.num)
-        this.x[i] = ane.x[aneId]
-        this.y[i] = h - ane.len[aneId]
+        this.id[i] = Math.floor(Math.random() * ane.num)
+        this.x[i] = ane.x[this.id[i]]
+        this.y[i] = ane.heady[this.id[i]]
         this.l[i] = 0
         this.alive[i] = true
-        var ran = Math.random()
-        if (ran < 0.3)
+        let ran = Math.random()
+        if (ran < 0.2)
             this.fruitType[i] = 'blue'
         else
             this.fruitType[i] = 'orange'
@@ -82,7 +89,7 @@ export class Fruit {
 
         }
         if (num < 15) {
-            this.sendFruit(ane, h, index)
+            this.sendFruit()
 
         }
     }

@@ -16,13 +16,4 @@ module.exports = {
         path: path.resolve(__dirname, "./dist/"),
         filename: "bundle.js"
     },
-    // plugins: [new webpack.optimize.UglifyJsPlugin({
-    //     compress: {
-    //         warnings: false
-    //     }
-    // })],
-    // devServer: {
-    //     inline: true,
-    // }
-
 };
